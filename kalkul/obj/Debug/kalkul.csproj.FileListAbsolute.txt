@@ -1,0 +1,31 @@
+D:\is31\kalkul\kalkul\bin\Debug\kalkul.exe.config
+D:\is31\kalkul\kalkul\bin\Debug\kalkul.exe
+D:\is31\kalkul\kalkul\bin\Debug\kalkul.pdb
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.csproj.AssemblyReference.cache
+D:\is31\kalkul\kalkul\obj\Debug\View\MainWindow.g.cs
+D:\is31\kalkul\kalkul\obj\Debug\App.g.cs
+D:\is31\kalkul\kalkul\obj\Debug\kalkul_MarkupCompile.cache
+D:\is31\kalkul\kalkul\obj\Debug\kalkul_MarkupCompile.lref
+D:\is31\kalkul\kalkul\obj\Debug\View\MainWindow.baml
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.g.resources
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.Properties.Resources.resources
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.csproj.GenerateResource.cache
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.csproj.CoreCompileInputs.cache
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.exe
+D:\is31\kalkul\kalkul\obj\Debug\kalkul.pdb
+C:\моё2\Visual Studia proekt\kalkul\kalkul\bin\Debug\kalkul.exe.config
+C:\моё2\Visual Studia proekt\kalkul\kalkul\bin\Debug\kalkul.exe
+C:\моё2\Visual Studia proekt\kalkul\kalkul\bin\Debug\kalkul.pdb
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.csproj.AssemblyReference.cache
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.csproj.SuggestedBindingRedirects.cache
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\View\MainWindow.g.cs
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\App.g.cs
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul_MarkupCompile.cache
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul_MarkupCompile.lref
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\View\MainWindow.baml
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.g.resources
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.Properties.Resources.resources
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.csproj.GenerateResource.cache
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.csproj.CoreCompileInputs.cache
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.exe
+C:\моё2\Visual Studia proekt\kalkul\kalkul\obj\Debug\kalkul.pdb
