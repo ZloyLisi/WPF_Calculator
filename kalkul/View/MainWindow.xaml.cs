@@ -131,7 +131,7 @@ namespace kalkul.View
                     break;
 
                 default:
-                    //Can't use directly from switch because it is not a constant
+                    
                     if (e.Text == DecimalSeparator)
                         btnPoint.PerformClick();
                    
@@ -141,7 +141,7 @@ namespace kalkul.View
                     break;
             }
 
-            //This will prevent other buttons focus firing its click event on <ENTER> while typing
+            
             btnEquals.Focus();
         }
 
@@ -153,7 +153,7 @@ namespace kalkul.View
             if (txtInput.Text == "")
                 return;
 
-            //SecondValue is used for multiple clicks on Equals bringing the newest result of last operation
+          
             decimal val2 = SecondValue ?? Convert.ToDecimal(txtInput.Text);
             try
             {
@@ -161,7 +161,7 @@ namespace kalkul.View
             }
             catch (DivideByZeroException)
             {
-                MessageBox.Show("Can't divide by zero", "Divided by zero", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Делить на 0 нельзя", "Деление на 0", MessageBoxButton.OK, MessageBoxImage.Error);
                 btnClearAll.PerformClick();
             }
         }
@@ -211,11 +211,6 @@ namespace kalkul.View
                 Application.Current.MainWindow.Topmost = true;
             }
         }
-
-       
-
-   
-
 
 
         //память
@@ -269,16 +264,6 @@ namespace kalkul.View
         private void MC_Click(object sender, RoutedEventArgs e)
         {
             memory2 = 0;
-        }
-
-        
-        
-
-
-
-
-     
-
-       
+        }       
     }
 }
