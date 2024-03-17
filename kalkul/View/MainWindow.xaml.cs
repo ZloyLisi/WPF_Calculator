@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFCalc;
+
 
 namespace kalkul.View
 {
@@ -20,259 +23,167 @@ namespace kalkul.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        string DecimalSeparator => CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator;
+        decimal FirstValue { get; set; }
+        decimal? SecondValue { get; set; }
+
+        IOperation CurrentOperation;
         public MainWindow()
         {
             InitializeComponent();
+            btnPoint.Content = DecimalSeparator;
+            
+            btnSum.Tag = new Sum();
+            btnSubtraction.Tag = new Subtraction();
+            btnDivision.Tag = new Division();
+            btnMultiplication.Tag = new Multiplication();
         }
 
         public double i;
-        public double num1, num2, num3;
+        public double num1, num2, num3, num4;
         public double memory = 0;
         public double memory2 = 0;
         public bool enter = false;
-        
 
-        private void steretall_Click(object sender, RoutedEventArgs e)
+
+
+
+
+
+
+        private void regularButtonClick(object sender, RoutedEventArgs e)
+           => SendToInput(((Button)sender).Content.ToString());
+
+        private void SendToInput(string content)
         {
-            textBox1.Text = "";
-            memory = 0;
+            //Prevent 0 from appearing on the left of new numbers
+            if (txtInput.Text == "0")
+                txtInput.Text = "";
+
+            txtInput.Text = $"{txtInput.Text}{content}";
         }
 
-        private void zero_Click(object sender, RoutedEventArgs e)
+        private void btnPoint_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "0";
-            else
-                textBox1.Text += 0;
+            if (txtInput.Text.Contains(this.DecimalSeparator))
+                return;
+
+            regularButtonClick(sender, e);
         }
 
-        
-
-        private void one_Click(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "1";
-            else
-                textBox1.Text += 1;
+            //Prevent from clearing zero
+            if (txtInput.Text == "0")
+                return;
+
+            txtInput.Text = txtInput.Text.Substring(0, txtInput.Text.Length - 1);
+            if (txtInput.Text == "")
+                txtInput.Text = "0";
         }
 
-        private void three_Click(object sender, RoutedEventArgs e)
+        private void operationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "3";
-            else
-                textBox1.Text += 3;
+            //if current operation is not null then we already have the FirstValue
+            if (CurrentOperation == null)
+                FirstValue = Convert.ToDecimal(txtInput.Text);
+
+            CurrentOperation = (IOperation)((Button)sender).Tag;
+            SecondValue = null;
+            txtInput.Text = "";
         }
 
-        private void four_Click(object sender, RoutedEventArgs e)
+        private void Window_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "4";
-            else
-                textBox1.Text += 4;
+            switch (e.Text)
+            {
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    SendToInput(e.Text);
+                    break;
+
+                case "*":
+                    btnMultiplication.PerformClick();
+                    break;
+
+                case "-":
+                    btnSubtraction.PerformClick();
+                    break;
+
+                case "+":
+                    btnSum.PerformClick();
+                    break;
+
+                case "/":
+                    btnDivision.PerformClick();
+                    break;
+
+                case "=":
+                    btnEquals.PerformClick();
+                    break;
+
+                default:
+                    //Can't use directly from switch because it is not a constant
+                    if (e.Text == DecimalSeparator)
+                        btnPoint.PerformClick();
+                   
+                    else if (e.Text[0] == (char)13)
+                        btnEquals.PerformClick();
+
+                    break;
+            }
+
+            //This will prevent other buttons focus firing its click event on <ENTER> while typing
+            btnEquals.Focus();
         }
 
-        private void five_Click(object sender, RoutedEventArgs e)
+        private void btnEquals_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "5";
-            else
-                textBox1.Text += 5;
+            if (CurrentOperation == null)
+                return;
+
+            if (txtInput.Text == "")
+                return;
+
+            //SecondValue is used for multiple clicks on Equals bringing the newest result of last operation
+            decimal val2 = SecondValue ?? Convert.ToDecimal(txtInput.Text);
+            try
+            {
+                txtInput.Text = (FirstValue = CurrentOperation.DoOperation(FirstValue, (decimal)(SecondValue = val2))).ToString();
+            }
+            catch (DivideByZeroException)
+            {
+                MessageBox.Show("Can't divide by zero", "Divided by zero", MessageBoxButton.OK, MessageBoxImage.Error);
+                btnClearAll.PerformClick();
+            }
         }
 
-        private void six_Click(object sender, RoutedEventArgs e)
-        {
-            if (textBox1.Text == "0")
-                textBox1.Text = "6";
-            else
-                textBox1.Text += 6;
-        }
+        private void btnClearEntry_Click(object sender, RoutedEventArgs e)
+            => txtInput.Text = "0";
 
-        private void seven_Click(object sender, RoutedEventArgs e)
+        private void btnClearAll_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox1.Text == "0")
-                textBox1.Text = "7";
-            else
-                textBox1.Text += 7;
+            FirstValue = 0;
+            CurrentOperation = null;
+            txtInput.Text = "0";
         }
+   
 
-        private void eight_Click(object sender, RoutedEventArgs e)
-        {
-            if (textBox1.Text == "0")
-                textBox1.Text = "8";
-            else
-                textBox1.Text += 8;
-        }
-
-        private void nine_Click(object sender, RoutedEventArgs e)
-        {
-            if (textBox1.Text == "0")
-                textBox1.Text = "9";
-            else
-                textBox1.Text += 9;
-        }
-
-        private void plus_Click(object sender, RoutedEventArgs e)
+    private void koren_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                i = 1;
-                num1 = Convert.ToDouble(textBox1.Text);
-                textBox1.Text = "";
-                textBox1.Focus();
-            }
-            catch (FormatException)
-            {
-                this.Topmost = true;
-            }
-            catch (Exception)
-            {
-                this.Topmost = true;
-            }
-        }
-
-      
-
-        private void ravno_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (i == 1)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = num1 + num2;
-                    textBox1.Text = num3.ToString();
-                }
-                if (i == 2)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = num1 / num2;
-                    textBox1.Text = num3.ToString();
-                }
-                if (i == 3)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = num1 * num2;
-                    textBox1.Text = num3.ToString();
-                }
-                if (i == 4)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = num1 - num2;
-                    textBox1.Text = num3.ToString();
-                }
-                if (i == 5)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = Math.Pow(num1, num2);
-                    textBox1.Text = num3.ToString();
-                }
-                if (i == 6)
-                {
-                    num2 = Double.Parse(textBox1.Text);
-                    num3 = Math.Pow(num1, (double)1 / num2);
-                    textBox1.Text = num3.ToString();
-                }
-            }
-            catch (FormatException)
-            {
-
-                this.Topmost = true;
-            }
-            catch (Exception)
-            {
-
-                this.Topmost = true;
-            }
-        }
-
-        private void tochka_Click(object sender, RoutedEventArgs e)
-        {
-            {
-                if (textBox1.Text == "") textBox1.Text += "0,";
-                if (!textBox1.Text.Contains(","))
-                    textBox1.Text = textBox1.Text + ",";
-            }
-        }
-
-        private void minus_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (textBox1.Text == "0" || textBox1.Text == " ")
-                    textBox1.Text = "";
-                else
-                {
-                    i = 4;
-                    num1 = Convert.ToDouble(textBox1.Text);
-                    textBox1.Text = "";
-                    textBox1.Focus();
-                }
-            }
-            catch (FormatException)
-            {
-                this.Topmost = true;
-            }
-            catch (Exception)
-            {
-                this.Topmost = true;
-            }
-        }
-
-        private void umnozhit_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                i = 3;
-                num1 = Convert.ToDouble(textBox1.Text);
-                textBox1.Text = "";
-                textBox1.Focus();
-            }
-            catch (FormatException)
-            {
-                this.Topmost = true;
-            }
-            catch (Exception)
-            {
-                this.Topmost = true;
-            }
-        }
-
-        private void delit_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                i = 2;
-                num1 = Convert.ToDouble(textBox1.Text);
-                textBox1.Text = "";
-                textBox1.Focus();
-            }
-            catch (FormatException)
-            {
-                this.Topmost = true;
-            }
-            catch (Exception)
-            {
-                this.Topmost = true;
-            }
-        }
-
-        private void off_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            if (result == MessageBoxResult.Yes)
-            {
-                Close();
-            }
-        }
-
-        private void koren_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                enter = false; num2 = Convert.ToDouble(textBox1.Text);
+                enter = false; num2 = Convert.ToDouble(txtInput.Text);
                 if (num2 < 0) throw new Exception("Ошибка: отрицательное число"); num2 = Convert.ToDouble(Math.Sqrt((double)num2));
-                textBox1.Text = Convert.ToString(num2);
+                txtInput.Text = Convert.ToString(num2);
             }
             catch (Exception ex)
             {
@@ -285,9 +196,9 @@ namespace kalkul.View
         {
             try
             {
-                num1 = Convert.ToDouble(textBox1.Text);
+                num1 = Convert.ToDouble(txtInput.Text);
                 num2 = num1 / 100;
-                textBox1.Text = num2.ToString();
+                txtInput.Text = num2.ToString();
             }
             catch (FormatException)
             {
@@ -301,11 +212,18 @@ namespace kalkul.View
             }
         }
 
+       
+
+   
+
+
+
+        //память
         private void mplus_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (double.TryParse(textBox1.Text, out double currentValue))
+                if (double.TryParse(txtInput.Text, out double currentValue))
                 {
                     memory2 += currentValue;
                 }
@@ -322,12 +240,11 @@ namespace kalkul.View
                 Application.Current.MainWindow.Topmost = true;
             }
         }
-
         private void mminus_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (double.TryParse(textBox1.Text, out double currentValue))
+                if (double.TryParse(txtInput.Text, out double currentValue))
                 {
                     memory2 -= currentValue;
                 }
@@ -346,7 +263,7 @@ namespace kalkul.View
 
         private void mr_Click(object sender, RoutedEventArgs e)
         {
-            textBox1.Text = memory2.ToString();
+            txtInput.Text = memory2.ToString();
         }
 
         private void MC_Click(object sender, RoutedEventArgs e)
@@ -354,21 +271,13 @@ namespace kalkul.View
             memory2 = 0;
         }
 
-        private void two_Click(object sender, RoutedEventArgs e)
-        {
-            if (textBox1.Text == "0")
-                textBox1.Text = "2";
-            else
-                textBox1.Text += 2;
-        }
+        
+        
 
 
 
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
+     
 
        
     }

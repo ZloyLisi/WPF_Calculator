@@ -5,61 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kalkul"
         mc:Ignorable="d"
-        Title="Калькулятор" Height="500" Width="350" MinHeight="500" MinWidth="350" MaxHeight="700" MaxWidth="550" Foreground="#FFE26C6C" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" Background="#FFB6BAFF" Cursor="" 
+        Title="Калькулятор" Height="500" Width="350" MinHeight="500" MinWidth="350"  Foreground="#FFE26C6C" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" Background="#FFCE12B6" Cursor="" 
        >
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="450"/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBox Grid.ColumnSpan="4" Height="50" FontSize="30" Width="288" Name="textBox1" TextAlignment="Left" TextChanged="textBox1_TextChanged" IsEnabled="False" BorderBrush="#FFFF2626" Background="#FFD28C8C" FontFamily="Arial Black"  />
-            <Button x:Name="steretall" Grid.Column="1" Grid.Row="1" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="25" Click="steretall_Click">C</Button>
-            <Button x:Name="mr" Grid.Row="2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="25" Click="mr_Click" >MR</Button>
-            <Button x:Name="seven" Grid.Row="3" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="seven_Click">7</Button>
-            <Button x:Name="four" Grid.Row="4" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="four_Click">4</Button>
-            <Button x:Name="one" Grid.Row="5" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="one_Click">1</Button>
-            <Button x:Name="zero" Grid.Row="6" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="zero_Click">0</Button>
-            <Button x:Name="MC"  Grid.Row="1" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="25" Click="MC_Click">MC</Button>
-            <Button x:Name="mminus" Grid.Column="1" Grid.Row="2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="25" Click="mminus_Click">M-</Button>
-            <Button x:Name="eight" Grid.Column="1" Grid.Row="3" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="eight_Click">8</Button>
-            <Button x:Name="five" Grid.Column="1" Grid.Row="4" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="five_Click">5</Button>
-            <Button x:Name="two" Grid.Column="1" Grid.Row="5" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="two_Click">2</Button>
-            <Button x:Name="tochka" Grid.Column="1" Grid.Row="6" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="tochka_Click">.</Button>
-            <Button x:Name="koren" Grid.Column="2" Grid.Row="1" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="koren_Click">√</Button>
-            <Button x:Name="mplus" Grid.Column="2" Grid.Row="2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="25" Click="mplus_Click">M+</Button>
-            <Button x:Name="nine" Grid.Column="2" Grid.Row="3" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="nine_Click">9</Button>
-            <Button x:Name="six" Grid.Column="2" Grid.Row="4" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="six_Click">6</Button>
-            <Button x:Name="three" Grid.Column="2" Grid.Row="5" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="three_Click">3</Button>
-            <Button x:Name="ravno" Grid.Column="2" Grid.Row="6" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="ravno_Click">=</Button>
-            <Button x:Name="percent" Grid.Column="3" Grid.Row="1" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="percent_Click">%</Button>
-            <Button x:Name="delit" Grid.Column="3" Grid.Row="2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="delit_Click">/</Button>
-            <Button x:Name="umnozhit" Grid.Column="3" Grid.Row="3" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="umnozhit_Click">*</Button>
-            <Button x:Name="minus" Grid.Column="3" Grid.Row="4" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="60" Width="60" FontSize="30" Click="minus_Click">-</Button>
-            <Button x:Name="plus" Grid.Column="3" Grid.Row="5" Grid.RowSpan="2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Height="120" Width="60" FontSize="30" Click="plus_Click">+</Button>
-
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnmr" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="mr" Grid.Row="1" Grid.Column="0" FontSize="20" Margin="2" Click="mr_Click"/>
+        <Button x:Name="btnmc" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="mс" Grid.Row="1" Grid.Column="1" FontSize="20" Margin="2" Click="MC_Click"/>
+        <Button x:Name="btnmm" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="m-" Grid.Row="1" Grid.Column="2" FontSize="20" Margin="2" Click="mminus_Click"/>
+        <Button x:Name="btnmp" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="m+" Grid.Row="1" Grid.Column="3" FontSize="20" Margin="2" Click="mplus_Click"/>
+        <TextBox x:Name="txtInput" Grid.Row="0" Grid.ColumnSpan="4" Margin="2" TextAlignment="Right" Text="0" FontSize="36" IsReadOnly="True" Background="#FFA899B9" FontFamily="Arial Black"/>
+        <Button x:Name="btn7" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="7" Grid.Row="3" Grid.Column="0" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn8" Background="#FFD8BEBE" BorderBrush="#FFEA9898"  Content="8" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn9" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="9" Grid.Row="3" Grid.Column="2" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn4" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="4" Grid.Row="4" Grid.Column="0" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn5" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="5" Grid.Row="4" Grid.Column="1" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn6" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="6" Grid.Row="4" Grid.Column="2" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn1" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="1" Grid.Row="5" Grid.Column="0" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn2" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="2" Grid.Row="5" Grid.Column="1" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn3" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="3" Grid.Row="5" Grid.Column="2" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btn0" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="0" Grid.Row="6" Grid.Column="0" FontSize="20" Margin="2" Click="regularButtonClick"/>
+        <Button x:Name="btnPoint" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="." Grid.Row="6" Grid.Column="1" FontSize="20" Margin="2" Click="btnPoint_Click"/>
+        <Button x:Name="btnDivision" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="/" Grid.Row="2" Grid.Column="3" FontSize="20" Margin="2" Click="operationButton_Click"/>
+        <Button x:Name="btnMultiplication" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="*" Grid.Row="3" Grid.Column="3" FontSize="20" Margin="2" Click="operationButton_Click"/>
+        <Button x:Name="btnSum" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="+" Grid.Row="4" Grid.Column="4" FontSize="20" Margin="2" Click="operationButton_Click"/>
+        <Button x:Name="btnSubtraction" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="-" Grid.Row="5" Grid.Column="3" FontSize="20" Margin="2" Click="operationButton_Click"/>
+        <Button x:Name="btnEquals" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="=" Grid.Row="6" Grid.Column="2" FontSize="20" Margin="2" Grid.ColumnSpan="2" Click="btnEquals_Click"/>
+        <Button x:Name="percent" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="%" Grid.Row="2" Grid.Column="2" FontSize="20" Margin="2" Click="percent_Click"/>
+        <Button x:Name="koren" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="√" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="2" Click="koren_Click"/>
+        <Button x:Name="btnClearAll" Background="#FFD8BEBE" BorderBrush="#FFEA9898" Content="C" Grid.Row="2" Grid.Column="0" FontSize="20" Margin="2" Click="btnClearAll_Click"/>
+    
     </Grid>
 </Window>
